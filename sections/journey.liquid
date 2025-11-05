@@ -1,0 +1,19 @@
+<section id="journey" style="padding:38px 20px;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <h2 style="margin:0 0 12px;font-size:28px;font-weight:800;">Our Experience Path</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:10px">
+      {% assign stages = 
+        "Inspire::See nature on campus,
+         Step Out::Take breaks outdoors,
+         Equip::Use NC wellness gear,
+         Belong::Join NC campus events" | split: ',' %}
+      {% for s in stages %}
+        {% assign parts = s | split: '::' %}
+        <div style="flex:1;min-width:200px;border:1px dashed #cfe6d6;background:#fcfffd;border-radius:12px;padding:12px">
+          <strong>{{ parts[0] }}</strong>
+          <div style="opacity:.8">{{ parts[1] }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
