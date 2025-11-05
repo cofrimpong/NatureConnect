@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ shop.name }} — {{ page_title }}</title>
+
+    {{ content_for_header }}
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+  </head>
+  <body>
+    <header style="padding:16px 20px; border-bottom:1px solid #e8efe9;">
+      <strong style="padding:6px 10px; border-radius:10px; background:linear-gradient(135deg,#43a047,#1b5e20); color:#fff;">NC</strong>
+      <span style="margin-left:8px; font-weight:700;">NatureConnect</span>
+    </header>
+
+    <main role="main">
+      {{ content_for_layout }}
+    </main>
+
+    <footer style="padding:24px 20px; border-top:1px solid #e8efe9; font-size:12px; opacity:.75;">
+      © {{ 'now' | date: '%Y' }} NatureConnect • Built on Shopify
+    </footer>
+
+    {{ 'theme.js' | asset_url | script_tag }}
+  </body>
+</html>
