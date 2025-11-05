@@ -1,0 +1,58 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "sections": {
+      "hero": {
+        "type": "hero",
+        "settings": {}
+      },
+      "vision": {
+        "type": "vision",
+        "settings": {}
+      },
+      "brand": {
+        "type": "brand",
+        "settings": {}
+      },
+      "journey": {
+        "type": "journey",
+        "settings": {}
+      },
+      "partners": {
+        "type": "partners",
+        "settings": {}
+      },
+      "shopify-buy": {
+        "type": "shopify-buy",
+        "settings": {
+          "heading": "Shop NatureConnect Gear",
+          "domain": "nature-connect-development.myshopify.com",
+          "storefront_token": "9b31e2e421e79ff2a5ae2d725f09ee07",
+          "collection_id": "302864826504"
+        }
+      },
+      "contact": {
+        "type": "contact",
+        "settings": {}
+      },
+      "featured-collection": {
+        "type": "featured-collection",
+        "settings": {
+          "heading": "Products",
+          "collection": "natureconnect-products",
+          "product_count": 8,
+          "columns": 3
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}
