@@ -1,89 +1,60 @@
 {% comment %}
-  NatureConnect – Featured Collection section
-  Shows products from a chosen collection in a simple grid.
+NatureConnect – Featured Collection Section (Compact Version)
 {% endcomment %}
 
-<section class="nc-featured-collection" style="padding: 32px 0;">
-  <div class="page-width">
+<section class="nc-featured" style="padding: 60px 0; background-color: #fafafa;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
     {% if section.settings.heading != blank %}
-      <h2 style="margin-bottom: 20px;">{{ section.settings.heading }}</h2>
+      <h2 style="text-align:center; margin-bottom: 40px; font-size: 2rem;">{{ section.settings.heading }}</h2>
     {% endif %}
 
     {% assign coll = collections[section.settings.collection] %}
     {% if coll and coll.products_count > 0 %}
-      <div class="nc-grid" style="
-        display:grid;
-        gap:24px;
-        grid-template-columns: repeat({{ section.settings.columns }}, minmax(0,1fr));
+      <div style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 30px;
+        justify-items: center;
       ">
         {% for product in coll.products limit: section.settings.product_count %}
-          <article>
-            <a href="{{ product.url }}" style="display:block; text-decoration:none; color:inherit;">
+          <article style="
+            background: white;
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            padding: 15px;
+            width: 100%;
+            max-width: 260px;
+            text-align: center;
+            transition: transform 0.2s ease;
+          " onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            <a href="{{ product.url }}" style="text-decoration:none; color:inherit;">
               {% if product.featured_image %}
                 <img
-                  src="{{ product.featured_image | img_url: '600x' }}"
-                  alt="{{ product.featured_image.alt | escape }}"
-                  style="width:100%; height:auto; border-radius: 8px;"
-                  loading="lazy">
+                  src="{{ product.featured_image | img_url: '400x400' }}"
+                  alt="{{ product.title }}"
+                  style="width:100%; border-radius:10px;">
               {% endif %}
-              <h3 style="margin:10px 0 6px; font-size: 1rem;">{{ product.title }}</h3>
-              <div style="opacity:.8;">
-                {% if product.price_varies %}
-                  {{ product.price_min | money }} – {{ product.price_max | money }}
-                {% else %}
-                  {{ product.price | money }}
-                {% endif %}
-              </div>
+              <h3 style="margin:12px 0 6px; font-size:1rem;">{{ product.title }}</h3>
+              <p style="color:#333; font-weight:600;">{{ product.price | money }}</p>
             </a>
           </article>
         {% endfor %}
       </div>
     {% else %}
-      <p>No products found. Pick a collection in the section settings.</p>
+      <p style="text-align:center;">No products found. Please select a collection.</p>
     {% endif %}
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Featured collection (NC)",
-  "tag": "section",
-  "class": "section",
+  "name": "Featured Collection",
   "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Products"
-    },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
-    {
-      "type": "range",
-      "id": "product_count",
-      "label": "Product count",
-      "min": 1,
-      "max": 24,
-      "step": 1,
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "columns",
-      "label": "Columns",
-      "min": 1,
-      "max": 4,
-      "step": 1,
-      "default": 3
-    }
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Products" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "product_count", "label": "Number of products", "min": 1, "max": 20, "step": 1, "default": 6 }
   ],
-  "presets": [
-    {
-      "name": "Featured collection (NC)"
-    }
-  ]
+  "presets": [{ "name": "Featured Collection" }]
 }
 {% endschema %}
