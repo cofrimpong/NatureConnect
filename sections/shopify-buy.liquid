@@ -1,35 +1,125 @@
-<section id="nc-shop" style="padding:40px 20px;background:#f7fbf8;">
+{% comment %}
+NatureConnect – Shopify Buy Button section
+Renders a collection grid with live prices, variant selectors, quantity & cart.
+Configure the settings in the Theme Editor (domain, token, collection id).
+{% endcomment %}
+
+<section id="shop" style="padding:40px 20px;background:#f7fbf8;">
   <div style="max-width:1100px;margin:0 auto;">
-    <h2 style="font-size:28px;font-weight:800;margin:0 0 8px;">Shop NatureConnect Gear</h2>
-    <p style="opacity:.75;margin:0 0 16px;">Secure checkout • Fast delivery</p>
-    <div id="nc-buy-button"></div>
+    <h2 style="margin:0 0 8px;font-size:28px;font-weight:800;">
+      {{ section.settings.heading | default: 'Shop NatureConnect Gear' }}
+    </h2>
+    <p style="opacity:.8;margin:0 0 18px;">Secure checkout • Fast delivery</p>
+
+    <div id="nc-shopify-products"></div>
   </div>
 </section>
 
-<script src="https://cdn.shopify.com/shopifycloud/buy-button-ui/v2.4.0/buy-button-ui.min.js"></script>
 <script>
-(function(){
-  var client = ShopifyBuy.buildClient({
-    domain: 'nature-connect-development.myshopify.com',
-    storefrontAccessToken: '9b31e2e421e79ff2a5ae2d725f09ee07'
-  });
+  (function() {
+    // Prevent loading the BuyButton script more than once
+    function loadScript() {
+      return new Promise(function(resolve) {
+        if (window.ShopifyBuy && window.ShopifyBuy.UI) return resolve();
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://cdn.shopify.com/shopifycloud/buy-button-ui/v2.4.0/buy-button-ui.min.js';
+        s.onload = resolve;
+        document.head.appendChild(s);
+      });
+    }
 
-  ShopifyBuy.UI.onReady(client).then(function (ui) {
-    ui.createComponent('collection', {
-      id: '302864826504',   // your Starter Kit collection
-      node: document.getElementById('nc-buy-button'),
-      moneyFormat: '%24%7B%7Bamount%7D%7D',
-      options: {
-        product: {
-          buttonDestination: 'checkout',
-          isButton: true,
-          styles: {
-            button: { "background-color":"#2e7d32", "border-radius":"12px", "font-weight":"700" }
+    loadScript().then(function () {
+      var client = ShopifyBuy.buildClient({
+        domain: '{{ section.settings.domain | escape }}',
+        storefrontAccessToken: '{{ section.settings.storefront_token | escape }}'
+      });
+
+      ShopifyBuy.UI.onReady(client).then(function (ui) {
+        ui.createComponent('collection', {
+          id: '{{ section.settings.collection_id | escape }}', // numeric ID
+          node: document.getElementById('nc-shopify-products'),
+          moneyFormat: '%24%7B%7Bamount%7D%7D',
+          options: {
+            product: {
+              isButton: true,                // shows "Add to cart" on the tile
+              buttonDestination: 'cart',     // add to cart (not direct checkout)
+              contents: {
+                img: true,
+                title: true,
+                price: true,
+                options: true,               // variant selectors
+                quantity: true,
+                button: true
+              },
+              styles: {
+                product: {
+                  'padding': '12px',
+                  'border': '1px solid #e7eee8',
+                  'border-radius': '12px',
+                  'box-shadow': '0 6px 16px rgba(0,0,0,.06)'
+                },
+                button: {
+                  'background-color': '#2e7d32',
+                  'border-radius': '12px',
+                  'padding': '12px 16px',
+                  ':hover': {'background-color': '#256628'}
+                },
+                title: {'font-weight': '700'},
+                price: {'color': '#2e7d32','font-weight': '700'}
+              }
+            },
+            cart: {
+              startOpen: false,
+              styles: {
+                button: {'background-color': '#2e7d32', ':hover': {'background-color': '#256628'}}
+              }
+            },
+            toggle: {
+              styles: {
+                toggle: {'background-color': '#2e7d32', ':hover': {'background-color': '#256628'}}
+              }
+            }
           }
-        },
-        cart: { startOpen: false }
-      }
+        });
+      });
     });
-  });
-})();
+  })();
 </script>
+
+{% schema %}
+{
+  "name": "Shopify Buy (Collection)",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop NatureConnect Gear"
+    },
+    {
+      "type": "text",
+      "id": "domain",
+      "label": "Shop domain",
+      "default": "nature-connect-development.myshopify.com",
+      "info": "Format: your-store.myshopify.com"
+    },
+    {
+      "type": "text",
+      "id": "storefront_token",
+      "label": "Storefront API access token",
+      "default": "9b31e2e421e79ff2a5ae2d725f09ee07"
+    },
+    {
+      "type": "text",
+      "id": "collection_id",
+      "label": "Collection ID (numeric)",
+      "default": "302864826504",
+      "info": "Admin → Products → Collections → open a collection. The URL or View JSON shows the numeric ID."
+    }
+  ],
+  "presets": [
+    {"name": "Shopify Buy (Collection)"}
+  ]
+}
+{% endschema %}
