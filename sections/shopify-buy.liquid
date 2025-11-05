@@ -1,0 +1,35 @@
+<section id="nc-shop" style="padding:40px 20px;background:#f7fbf8;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <h2 style="font-size:28px;font-weight:800;margin:0 0 8px;">Shop NatureConnect Gear</h2>
+    <p style="opacity:.75;margin:0 0 16px;">Secure checkout • Fast delivery</p>
+    <div id="nc-buy-button"></div>
+  </div>
+</section>
+
+<script src="https://cdn.shopify.com/shopifycloud/buy-button-ui/v2.4.0/buy-button-ui.min.js"></script>
+<script>
+(function(){
+  var client = ShopifyBuy.buildClient({
+    domain: 'nature-connect-development.myshopify.com',
+    storefrontAccessToken: '9b31e2e421e79ff2a5ae2d725f09ee07'
+  });
+
+  ShopifyBuy.UI.onReady(client).then(function (ui) {
+    ui.createComponent('collection', {
+      id: '302864826504',   // your Starter Kit collection
+      node: document.getElementById('nc-buy-button'),
+      moneyFormat: '%24%7B%7Bamount%7D%7D',
+      options: {
+        product: {
+          buttonDestination: 'checkout',
+          isButton: true,
+          styles: {
+            button: { "background-color":"#2e7d32", "border-radius":"12px", "font-weight":"700" }
+          }
+        },
+        cart: { startOpen: false }
+      }
+    });
+  });
+})();
+</script>
