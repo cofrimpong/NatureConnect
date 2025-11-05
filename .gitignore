@@ -1,0 +1,27 @@
+# Node artifacts
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# OneDrive temp
+~$*
+
+# Build/dist
+dist/
+build/
+
+# Misc
+.env
+
+# Images (if you prefer to not commit large media)
+# images/

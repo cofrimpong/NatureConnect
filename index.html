@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NatureConnect • Shop With Us</title>
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <meta name="description" content="NatureConnect — campus-driven outdoor wellness brand powered by Shopify.">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container bar">
+    <div class="logo"><span class="logo-mark">NC</span> NatureConnect</div>
+    <nav class="site-nav">
+      <a href="#vision">Vision</a>
+      <a href="#brand">Brand</a>
+      <a href="#journey">Journey</a>
+      <a href="#shop">Shop</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-outline" href="#shop">Shop Now</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-wrap">
+    <div>
+      <span class="tag">Campus Wellness • Outdoor Living</span>
+      <h1>NatureConnect</h1>
+      <p class="lead">A college-first outdoors brand reconnecting students to nature — powered by Shopify.</p>
+      <a class="btn" href="#shop">Explore Products</a>
+    </div>
+
+    <div class="hero-image">
+      <img src="images/hero-campus.jpeg" alt="Campus">
+      <span class="cap">Campus • Parks • Trails</span>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section id="vision">
+  <div class="container grid grid-2">
+    <article class="card">
+      <h2>Our Purpose</h2>
+      <p>Today’s students crave balance, nature, and real community. NatureConnect makes campus life calmer and more connected through outdoor-focused wellness gear & experiences.</p>
+    </article>
+
+    <div class="img-slot">
+      <img src="images/nature-students.jpeg" alt="">
+      <span class="cap">Outdoor Community</span>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND -->
+<section id="brand" class="alt">
+  <div class="container grid grid-2">
+    <article class="card">
+      <h2>Brand Values</h2>
+      <p>📍 Designed for campus explorers</p>
+      <p>🌿 Made for mindful outdoor breaks</p>
+      <p>👐 Built for student community</p>
+    </article>
+
+    <div class="img-slot">
+      <img src="images/campus-lawn.jpeg" alt="">
+      <span class="cap">Campus Vibes</span>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey">
+  <div class="container">
+    <h2>Our Experience Path</h2>
+    <div class="funnel">
+      <div class="stage"><strong>Inspire</strong><div>See nature on campus</div></div>
+      <div class="stage"><strong>Step Out</strong><div>Take breaks outdoors</div></div>
+      <div class="stage"><strong>Equip</strong><div>Use NC wellness gear</div></div>
+      <div class="stage"><strong>Belong</strong><div>Join NC campus events</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOPIFY PRODUCT GRID -->
+<section id="shop" class="alt">
+  <div class="container">
+    <h2>Shop NatureConnect Gear</h2>
+    <p class="muted">Powered by Shopify — secure checkout & fast delivery.</p>
+
+    <div id="shopify-products" style="margin-top:30px;"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container grid grid-2">
+    <article class="card">
+      <h2>Contact</h2>
+      <p class="muted">hello@natureconnect.app</p>
+      <p class="muted">Newark, NJ — Campus Startup</p>
+    </article>
+
+    <div class="img-slot">
+      <img src="images/trees.jpeg" alt="">
+      <span class="cap">Grow With Us</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-row">
+    <div class="logo"><span class="logo-mark">NC</span> NatureConnect</div>
+    <div class="note">© <span id="year"></span> NatureConnect • Built with Shopify</div>
+  </div>
+</footer>
+
+<!-- ✅ Shopify Buy Button Script (Complete With Your Values) -->
+<script src="https://cdn.shopify.com/shopifycloud/buy-button-ui/v2.4.0/buy-button-ui.min.js"></script>
+<script>
+(function() {
+  const client = ShopifyBuy.buildClient({
+    domain: 'nature-connect-development.myshopify.com',
+    storefrontAccessToken: '9b31e2e421e79ff2a5ae2d725f09ee07'
+  });
+
+  ShopifyBuy.UI.onReady(client).then(function (ui) {
+    ui.createComponent('collection', {
+      id: '302864826504',
+      node: document.getElementById('shopify-products'),
+      moneyFormat: '%24%7B%7Bamount%7D%7D',
+      options: {
+        product: {
+          buttonDestination: 'checkout',
+          isButton: true
+        },
+        cart: { startOpen: false }
+      }
+    });
+  });
+})();
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
