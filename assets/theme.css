@@ -1,0 +1,7 @@
+:root{
+  --green-900:#1b5e20; --green-700:#2e7d32; --green-500:#43a047;
+  --sage-50:#eaf4ee; --accent-400:#ffd166; --radius:12px;
+  --text:#2f2f2f;
+}
+html,body{margin:0;padding:0;color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
+a{color:var(--green-700)}
