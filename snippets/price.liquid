@@ -1,1 +1,6 @@
-
+<span style="font-weight:bold;">
+  {{ product.price | money }}
+  {% if product.compare_at_price > product.price %}
+    <span style="text-decoration:line-through;color:#999;margin-left:6px;">{{ product.compare_at_price | money }}</span>
+  {% endif %}
+</span>
