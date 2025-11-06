@@ -9,7 +9,7 @@
           <img src="{{ product.featured_image | img_url: '400x' }}" alt="{{ product.title }}" style="width:100%;border-radius:10px;">
           <h3 style="margin-top:8px;">{{ product.title }}</h3>
         </a>
-        <p>{% render 'price', product: product %}</p>
+        <p>{% render 'card-product', product: product %}</p>
       </div>
     {% endfor %}
   </div>
