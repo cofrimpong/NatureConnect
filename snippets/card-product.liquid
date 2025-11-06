@@ -1,1 +1,9 @@
-
+<div class="product-card" style="border:1px solid #eee;border-radius:10px;padding:10px;text-align:center;">
+  <a href="{{ product.url }}" style="text-decoration:none;color:inherit;">
+    {% if product.featured_image %}
+      <img src="{{ product.featured_image | img_url: '400x' }}" alt="{{ product.title }}" style="width:100%;border-radius:8px;">
+    {% endif %}
+    <h3 style="margin:10px 0 4px;font-size:18px;">{{ product.title }}</h3>
+    <p style="margin:0;">{% render 'price', product: product %}</p>
+  </a>
+</div>
