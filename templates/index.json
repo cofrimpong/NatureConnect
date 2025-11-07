@@ -1,8 +1,0 @@
-{
-  "name": "Home",
-  "sections": {
-    "hero": { "type": "hero", "settings": {} },
-    "featured-collection": { "type": "featured-collection", "settings": {} }
-  },
-  "order": ["hero", "featured-collection"]
-}
