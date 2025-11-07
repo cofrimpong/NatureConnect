@@ -40,6 +40,31 @@ NatureConnect – Featured Collection Section (Compact Version)
               <h3 style="margin:12px 0 6px; font-size:1rem;">{{ product.title }}</h3>
               <p style="color:#333; font-weight:600;">{{ product.price | money }}</p>
             </a>
+{% comment %} Variant picker + Add to Cart on the card {% endcomment %}
+<div style="margin-top:8px;">
+  {% form 'product', product, class: 'nc-card-form' %}
+    {% if product.variants.size > 1 %}
+      <label for="v-{{ product.id }}" style="display:block;font-size:.9rem;margin-bottom:6px;color:#444;">
+        Options
+      </label>
+      <select id="v-{{ product.id }}" name="id"
+              style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:6px;margin-bottom:10px;">
+        {% for v in product.variants %}
+          <option value="{{ v.id }}" {% unless v.available %}disabled{% endunless %}>
+            {{ v.title }}{% unless v.available %} — Sold out{% endunless %}
+          </option>
+        {% endfor %}
+      </select>
+    {% else %}
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+    {% endif %}
+
+    <button type="submit"
+            style="width:100%;padding:10px 12px;border:none;border-radius:8px;background:#2e7d32;color:#fff;cursor:pointer;">
+      Add to Cart
+    </button>
+  {% endform %}
+</div>
           </article>
         {% endfor %}
       </div>
