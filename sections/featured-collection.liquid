@@ -6,19 +6,6 @@ NatureConnect – Featured Collection Section (Compact Version)
   <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
     {% if section.settings.heading != blank %}
       <h2 style="text-align:center; margin-bottom: 40px; font-size: 2rem;">{{ section.settings.heading }}</h2>
-<section style="padding:60px 20px;max-width:1200px;margin:auto;">
-  <h2 style="text-align:center;margin-bottom:30px;">Featured Products</h2>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;">
-    {% assign featured_collection = collections['frontpage'] %}
-    {% for product in featured_collection.products limit:4 %}
-      <div style="border:1px solid #eee;border-radius:10px;padding:10px;text-align:center;">
-        <a href="{{ product.url }}">
-          <img src="{{ product.featured_image | img_url: '400x' }}" alt="{{ product.title }}" style="width:100%;border-radius:8px;">
-          <h3>{{ product.title }}</h3>
-        </a>
-        <p>{% render 'price', product: product %}</p>
-      </div>
-    {% endfor %}
   </div>
 </section>
     {% endif %}
