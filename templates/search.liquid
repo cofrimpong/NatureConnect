@@ -1,0 +1,23 @@
+{% comment %} Minimal search results {% endcomment %}
+<main class="search">
+  <div class="wrap">
+    <h1>Search</h1>
+    <form action="{{ routes.search_url }}" method="get" role="search">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products">
+    </form>
+
+    {% if search.performed %}
+      {% if search.results_count > 0 %}
+        <div class="product-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+          {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+              {% render 'card-product', product: item %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>No results found.</p>
+      {% endif %}
+    {% endif %}
+  </div>
+</main>
