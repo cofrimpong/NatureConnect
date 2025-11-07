@@ -1,0 +1,7 @@
+{% comment %} Simple content page {% endcomment %}
+<main class="page">
+  <div class="wrap">
+    {{ page.title | escape | wrap: '<h1>', '</h1>' }}
+    <div class="rte">{{ page.content }}</div>
+  </div>
+</main>
